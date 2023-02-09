@@ -34,7 +34,7 @@ class RecipeAdmin(admin.ModelAdmin):
         list_ = [_.name for _ in obj.tags.all()]
         return ', '.join(list_)
 
-    @admin.display(description=' Ингредиенты ')
+    @admin.display(description='Ингредиенты')
     def get_ingredients(self, obj):
         return '\n '.join([
             f'{item["ingredient__name"]} - {item["amount"]}'
