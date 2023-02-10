@@ -31,7 +31,7 @@ from .serializers import (IngredientSerializer, RecipeReadSerializer,
 User = get_user_model()
 
 
-class GetObjectMixin:
+class GetRecipeObjectMixin:
     """Удаление/добавление рецептов избранных/корзины."""
 
     serializer_class = RecipeShortSerializer
@@ -85,7 +85,7 @@ class AddAndDeleteSubscribe(
 
 
 class AddDeleteFavoriteRecipe(
-        GetObjectMixin,
+        GetRecipeObjectMixin,
         generics.RetrieveDestroyAPIView,
         generics.ListCreateAPIView):
     """Добавление и удаление рецепта в/из избранных."""
@@ -101,7 +101,7 @@ class AddDeleteFavoriteRecipe(
 
 
 class AddDeleteShoppingCart(
-        GetObjectMixin,
+        GetRecipeObjectMixin,
         generics.RetrieveDestroyAPIView,
         generics.ListCreateAPIView):
     """Добавление и удаление рецепта в/из корзины."""

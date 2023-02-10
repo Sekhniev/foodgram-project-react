@@ -30,7 +30,7 @@ class TokenSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs.get('email')
         password = attrs.get('password')
-        if not email and password:
+        if not email and not password:
             msg = 'Необходимо указать "адрес электронной почты" и "пароль".'
             raise serializers.ValidationError(
                 msg,
@@ -236,13 +236,14 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
         return ingredients
 
     def create_ingredients(self, ingredients, recipe):
-        for ingredient in ingredients:
-            RecipeIngredient.objects.bulk_create[
+        objs = RecipeIngredient.objects.bulk_create[
                 RecipeIngredient(recipe=recipe,
                                  ingredient_id=ingredient.get('id'),
                                  amount=ingredient.get('amount')
                                  )
             ]
+        for ingredient in ingredients:
+            RecipeIngredient.objects.bulk_create(objs)
 
     def create(self, validated_data):
         ingredients = validated_data.pop('ingredients')
