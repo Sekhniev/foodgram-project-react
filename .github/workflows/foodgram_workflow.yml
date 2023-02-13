@@ -64,8 +64,8 @@ jobs:
           script: |
             sudo docker pull georgeous/foodgram_backend:latest
             sudo docker pull georgeous/foodgram_frontend:latest
-            sudo docker stop
-            sudo docker rm backend
+            sudo docker stop $(sudo docker ps -a -q)
+            sudo docker run --rm -d -p 5000:5000 georgeous/foodgram-project-react
       - name: docker-compose up
         uses: appleboy/ssh-action@master
         with:
