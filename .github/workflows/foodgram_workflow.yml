@@ -10,7 +10,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.7.9
 
     - name: Install dependencies
       run: |
@@ -62,9 +62,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
+            cd infra
             sudo docker pull georgeous/foodgram_backend:latest
             sudo docker pull georgeous/foodgram_frontend:latest
-            cd infra/
             sudo docker-compose stop
             sudo docker-compose rm backend
       - name: docker-compose up
