@@ -50,11 +50,10 @@ jobs:
               tags: georgeous/foodgram_frontend:latest
 
   deploy:
-      if: ${{ github.ref }} == 'master'
       runs-on: ubuntu-latest
       needs: build_and_push_to_docker_hub
       steps:
-      - name: pull docker image
+      - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -66,8 +65,8 @@ jobs:
             sudo docker pull georgeous/foodgram_frontend:latest
             cd foodgram-project-react/infra
             sudo docker-compose stop
-            sudo docker-compose rm backend
-            
+            sudo docker-compose rm web
+
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo POSTGRES_DB=${{ secrets.DB_NAME }} >> .env
