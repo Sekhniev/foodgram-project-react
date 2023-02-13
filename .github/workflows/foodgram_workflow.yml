@@ -62,9 +62,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            cd infra
             sudo docker pull georgeous/foodgram_backend:latest
             sudo docker pull georgeous/foodgram_frontend:latest
+            cd infra
             sudo docker-compose stop
             sudo docker-compose rm backend
       - name: docker-compose up
