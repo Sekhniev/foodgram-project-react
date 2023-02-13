@@ -98,7 +98,7 @@ class Recipe(models.Model):
     cooking_time = models.PositiveSmallIntegerField(
         verbose_name='Время приготовления в минутах',
         validators=[validators.MinValueValidator(
-            1, message='Мин. время приготовления 1 минута'),]
+            1, message='Мин. время приготовления 1 минута'), ]
     )
 
     pub_date = models.DateTimeField(
@@ -205,7 +205,8 @@ class Favorite(models.Model):
 
     @receiver(post_save, sender=User)
     def create_favorites(
-            sender, instance, created, **kwargs):
+        self, sender, instance, created, **kwargs
+    ):
         if created:
             return Favorite.objects.create(user=instance)
 
@@ -236,7 +237,7 @@ class ShoppingCart(models.Model):
 
     @receiver(post_save, sender=User)
     def create_shopping_cart(
-            sender, instance, created, **kwargs
+        self, sender, instance, created, **kwargs
     ):
         if created:
             return ShoppingCart.objects.create(user=instance)

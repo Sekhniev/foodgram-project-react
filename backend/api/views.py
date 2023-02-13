@@ -2,16 +2,14 @@ from datetime import datetime
 
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
+from django.db.models.aggregates import Count, Sum
 from django.db.models.expressions import Exists, OuterRef, Value
 from django.http import HttpResponse
-from django.db.models.aggregates import Count, Sum
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-
 from recipes.models import (Favorite, Ingredient, Recipe, RecipeIngredient,
                             ShoppingCart, Tag)
 from rest_framework import generics, status
-
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import action, api_view
@@ -23,10 +21,10 @@ from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
-from .serializers import (IngredientSerializer, RecipeReadSerializer,
-                          RecipeShortSerializer, RecipeWriteSerializer,
-                          TagSerializer, TokenSerializer, CustomUserCreateSerializer,
-                          SubscribeSerializer)
+from .serializers import (CustomUserCreateSerializer, IngredientSerializer,
+                          RecipeReadSerializer, RecipeShortSerializer,
+                          RecipeWriteSerializer, SubscribeSerializer,
+                          TagSerializer, TokenSerializer)
 
 User = get_user_model()
 
