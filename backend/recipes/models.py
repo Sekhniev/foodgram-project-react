@@ -205,7 +205,7 @@ class Favorite(models.Model):
 
     @receiver(post_save, sender=User)
     def create_favorites(
-        self, sender, instance, created, **kwargs
+        sender, instance, created, **kwargs
     ):
         if created:
             return Favorite.objects.create(user=instance)
@@ -237,7 +237,7 @@ class ShoppingCart(models.Model):
 
     @receiver(post_save, sender=User)
     def create_shopping_cart(
-        self, sender, instance, created, **kwargs
+        sender, instance, created, **kwargs
     ):
         if created:
             return ShoppingCart.objects.create(user=instance)
