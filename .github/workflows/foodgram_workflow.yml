@@ -55,7 +55,7 @@ jobs:
       needs: build_and_push_to_docker_hub
       steps:
       - name: executing remote ssh commands to deploy
-        uses: action/checkout@v2
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
@@ -67,7 +67,7 @@ jobs:
             sudo docker-compose stop
             sudo docker-compose rm backend
       - name: docker-compose up
-        uses: action/checkout@v2
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
