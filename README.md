@@ -157,32 +157,32 @@ sudo docker-compose stop
 sudo docker-compose down -v
 ``` 
 
-Для доступа к контейнеру web и сборки финальной части выполняем следующие команды:
+Для доступа к контейнеру backend и сборки финальной части выполняем следующие команды:
 
 ```bash
-sudo docker-compose exec web python manage.py makemigrations
+sudo docker-compose exec backend python manage.py makemigrations
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py migrate --noinput
+sudo docker-compose exec backend python manage.py migrate --noinput
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py createsuperuser
+sudo docker-compose exec backend python manage.py createsuperuser
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py collectstatic --no-input
+sudo docker-compose exec backend python manage.py collectstatic --no-input
 ```
 
 Дополнительно можно наполнить DB ингредиентами и тэгами:
 
 ```bash
-sudo docker-compose exec web python manage.py load_tags
+sudo docker-compose exec backend python manage.py load_tags
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py load_ingrs
+sudo docker-compose exec backend python manage.py load_ingrs
 ```
 
 На этом всё, продуктовый помощник запущен, можно наполнять его рецептами и делится с друзьями!
@@ -213,29 +213,29 @@ sudo docker-compose down -v
 Для доступа к контейнеру выполняем следующие команды:
 
 ```bash
-sudo docker-compose exec web python manage.py makemigrations
+sudo docker-compose exec backend python manage.py makemigrations
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py migrate --noinput
+sudo docker-compose exec backend python manage.py migrate --noinput
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py createsuperuser
+sudo docker-compose exec backend python manage.py createsuperuser
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py collectstatic --no-input
+sudo docker-compose exec backend python manage.py collectstatic --no-input
 ```
 
 Дополнительно можно наполнить DB ингредиентами и тэгами:
 
 ```bash
-sudo docker-compose exec web python manage.py load_tags
+sudo docker-compose exec backend python manage.py load_tags
 ```
 
 ```bash
-sudo docker-compose exec web python manage.py load_ingrs
+sudo docker-compose exec backend python manage.py load_ingrs
 ```
 
 При необходимости, но не обязательно, создаем базу и пользователя в PostgreSql (если будет необходимость запустить без Docker):
