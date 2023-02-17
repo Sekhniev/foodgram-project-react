@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
-from django.db.models import UniqueConstraint
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -124,7 +123,7 @@ class RecipeIngredient(models.Model):
     )
 
     ingredient = models.ForeignKey(
-        Ingredient,
+        'Ingredient',
         on_delete=models.CASCADE,
         related_name='ingredient'
     )
@@ -230,10 +229,7 @@ class ShoppingCart(models.Model):
     class Meta:
         verbose_name = 'Покупка'
         verbose_name_plural = 'Покупки'
-        constraints = [
-            UniqueConstraint(fields=['user', 'recipe'],
-                             name='shopping_cart')
-        ]
+        ordering = ['-id']
 
     def __str__(self):
         list_ = [item['name'] for item in self.recipe.values('name')]
